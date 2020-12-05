@@ -20,7 +20,7 @@ def search(node):
     search_queue = deque()
     search_queue += graph[node]
     searched = [] # lsita de ya revisados
-    while search_queue: # Mientras que el queue esté vacío
+    while search_queue: # Mientras que el queue NO esté vacío
         youAreHere = search_queue.popleft() # Tomamos el primer nodo en el queue
         if not youAreHere in searched: # solo hacemos la busqueda si ese nodo NO ha sido visitado antes
             if node_is_terminal(youAreHere): # Revisamos que sea el nodo que buscamos... en el sudoku que reglas serán ?
