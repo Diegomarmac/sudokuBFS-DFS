@@ -1,14 +1,14 @@
 var tablero = [
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0]
-]; // tablero de sudoku FIN, en ceros porque lo vamos a generar
+    [0,0,0,9,0,0,0,0,6],
+    [5,0,0,0,0,0,0,0,9],
+    [0,4,0,0,0,0,1,0,0],
+    [0,0,6,0,3,1,9,0,8],
+    [2,0,0,5,0,9,0,0,7],
+    [8,0,3,7,4,0,2,0,0],
+    [0,0,8,0,0,0,0,5,0],
+    [9,0,0,0,0,0,0,0,4],
+    [6,0,0,0,0,5,0,0,0]
+]; // tablero de sudoku FIN
 
 function siguienteEspacioVacio(tablero){
     for(var i = 0; i < 9; i++ ){
@@ -74,14 +74,14 @@ function generador(tablero){
         return tablero;
     }
 
-    for(let num = 1; num < 9;num++){
+    for(let num = 1; num <= 9;num++){
         if(revisarValores(tablero, renglon, columna, num) ){
             tablero[renglon][columna] = num;
             generador(tablero);
         }
     }
 
-    if(siguienteEspacioVacio(tablero)[0] !== -1 )
+    if(siguienteEspacioVacio(tablero)[0] !== -1 ) //si no me regresa la bandera de que ya no hay espacios vacios 
         tablero[renglon][columna] = 0;
 
 
@@ -89,4 +89,5 @@ function generador(tablero){
 }
 
 generador(tablero);
-console.log(tablero);
+console.log(tablero[0])
+
