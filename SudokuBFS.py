@@ -1,5 +1,6 @@
 import queue
 from copy import deepcopy
+import random
 
 # Tableros para hacer pruebas
 # si lo dejamos en ceros pasa algo interesante....
@@ -27,16 +28,6 @@ test3 = [[0,0,0,8,4,0,6,5,0],
          [6,0,0,0,0,0,0,4,0],
          [0,5,2,0,8,6,0,0,0]]
 
-test4 = [[0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0]]
-
 class Node(object):
 	def __init__(self, state, children):
 		self.state = state
@@ -56,7 +47,7 @@ def goal_test(state):
             localCount += state[i][j]
         if(localCount != fact_sum(len(state))):
             return False
-    ##Check the columns
+    ##Revisamos las columnas
     for i in range(0,len(state)):
         localCount = 0
         for j in range(0, len(state)):
@@ -140,19 +131,17 @@ def createBoards(state, valueQueue):
 		boards.append(deepcopy(state))
 	return boards
 
-
-
-def printNode(node):
-	print("State: " + str(node.state))
-	print("Children: " + str(node.children))
-	print("-------------------------------")
-
 def printBoard(state):
-	for i in range(0,len(state)):
-		print("\n")
-		for j in range(0,len(state)):
-			print(state[i][j], end="")
-	print("\n___________________")
+    for i in range(0, len(state)):
+        print("\n")
+        for j in range(0, len(state)):
+            a = random.randint(1,10) 
+            b = random.randint(1,10)
+            if a % b == 0:  # si el modulo del numero aleatorio a con b es 0, entonces, en ese indice de i,j, el valor de la mtatriz será 0
+                state[i][j] = 0
+            
+            print(state[i][j], end="")
+    print("\n---------------------------")
 
 def breadth_first_search(state):
     # Revisamos si el tablero comple con el objetivo
@@ -189,4 +178,3 @@ if __name__ == '__main__':
     printBoard(breadth_first_search(test1))
     printBoard(breadth_first_search(test2))
     printBoard(breadth_first_search(test3))
-    printBoard(breadth_first_search(test4))
